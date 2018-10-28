@@ -33,16 +33,6 @@ pipeline {
 			steps { runUAT(8888) }
 		}
 
-		stage("Deploy - Stage") {
-			withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin;/usr/local/bin']) 
-			steps { deploy('stage') }
-		}
-
-		stage("Test - UAT Stage") {
-			withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin;/usr/local/bin']) 
-			steps { runUAT(88) }
-		}
-
 	}
 }
 
