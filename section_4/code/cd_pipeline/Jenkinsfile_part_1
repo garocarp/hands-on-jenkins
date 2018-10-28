@@ -18,7 +18,7 @@
 	              }
        stage('Create') {
             steps {
-                withEnv(['PATH+EXTRA=/usr/local/bin:/usr/bin:/sbin:/bin']) 
+               # withEnv(['PATH+EXTRA=/usr/local/bin:/usr/bin:/sbin:/bin']) 
 		    {
                          sh "docker ps -f name=app_dev -q | xargs r docker stop"
 	                 sh "docker ps -a -f name=app_dev -q | xargs r docker rm"
