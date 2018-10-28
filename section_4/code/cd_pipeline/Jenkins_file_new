@@ -25,20 +25,20 @@
 		       }
                      }
                    }
-               }
-               stage('aftermath') {
+       stage('aftermath') {
             steps {
-		    withEnv(['PATH+EXTRA=/usr/local/bin:/usr/bin:/sbin:/bin']) {
-                         steps { buildApp() }
-		}
+                     steps { buildApp() }
 		       }
                      }
-                   }
-               }
+         }
+ }
+       
                
                // steps
-def buildApp() {
+        def buildApp() {
 	dir ('section_4/code/cd_pipeline' ) {
 		def appImage = docker.build("hands-on-jenkins/myapp:${BUILD_NUMBER}")
 	}
+      }
+
 }
