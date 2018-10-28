@@ -18,11 +18,11 @@
 	              }
        stage('Create') {
             steps {
-		    
+		    withEnv(['PATH+EXTRA=/usr/local/bin:/usr/bin:/sbin:/bin']) {
                          sh "docker ps -f name=app_dev -q | xargs r docker stop"
 	                 sh "docker ps -a -f name=app_dev -q | xargs r docker rm"
 	                 sh "docker run -d -p 8888:5000 --name app_dev hands-on-jenkins/myapp"
-                       
+		       }
                      }
                    }
                }
