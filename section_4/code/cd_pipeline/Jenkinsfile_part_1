@@ -22,7 +22,7 @@
 		    {
                          sh "docker ps -f name=app_dev -q | xargs --no-run-if-empty docker stop"
 	                 sh "docker ps -a -f name=app_dev -q | xargs -r docker rm"
-	                 sh "docker run -d -p $8888:5000 --name ${containerName} hands-on-jenkins/myapp:${BUILD_NUMBER}"
+	                 sh "docker run -d -p $8888:5000 --name app_dev hands-on-jenkins/myapp"
                        }
                      }
                    }
