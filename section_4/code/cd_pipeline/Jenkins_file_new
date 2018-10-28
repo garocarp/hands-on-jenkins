@@ -1,0 +1,45 @@
+#!/usr/bin/groovy
+
+ pipeline {
+   
+	 agent any
+         options {
+               disableConcurrentBuilds()
+                     }
+      stages {
+              stage('Test') {
+                  steps {
+                     withEnv(['PATH+EXTRA=/usr/local/bin:/usr/bin:/sbin:/bin']) 
+		           {
+                             sh 'env' 
+                             sh 'docker --version'
+                            } 
+	                 }
+	              }
+       stage('Create') {
+            steps {
+		    withEnv(['PATH+EXTRA=/usr/local/bin:/usr/bin:/sbin:/bin']) {
+                         sh "docker ps -f name=app_dev -q | xargs r docker stop"
+	                 sh "docker ps -a -f name=app_dev -q | xargs r docker rm"
+	                 sh "docker run -d -p 8888:5000 --name app_dev hands-on-jenkins/myapp"
+		       }
+                     }
+                   }
+               }
+               stage('aftermath') {
+            steps {
+		    withEnv(['PATH+EXTRA=/usr/local/bin:/usr/bin:/sbin:/bin']) {
+                         steps { buildApp() }
+		}
+		       }
+                     }
+                   }
+               }
+               
+               // steps
+def buildApp() {
+	dir ('section_4/code/cd_pipeline' ) {
+		def appImage = docker.build("hands-on-jenkins/myapp:${BUILD_NUMBER}")
+	}
+}
+}
