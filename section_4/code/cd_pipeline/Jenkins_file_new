@@ -19,7 +19,7 @@
        stage('Create') {
             steps {
 		    withEnv(['PATH+EXTRA=/usr/local/bin:/usr/bin:/sbin:/bin']) {
-	                 sh "docker run -d -p 8888:5000 --name app_dev hands-on-jenkins/myapp"
+	                 sh "docker run -d -p 8888:5000 --name app_deve hands-on-jenkins/myapp"
 		       }
                      }
                    }
