@@ -17,11 +17,6 @@ pipeline {
 		    buildApp() }
 		}
 
-        stage("Deploy - Dev") {
-            steps { 
-		    deploy('dev') }
-		}
-
 	}
 }
 
