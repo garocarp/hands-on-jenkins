@@ -14,13 +14,11 @@ pipeline {
 
         stage("Build") {
             steps { 
-		    withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin;/usr/local/bin']) 
 		    buildApp() }
 		}
 
         stage("Deploy - Dev") {
             steps { 
-		    withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin;/usr/local/bin']) 
 		    deploy('dev') }
 		}
 
@@ -31,6 +29,7 @@ pipeline {
 // steps
 def buildApp() {
 	dir ('section_4/code/cd_pipeline' ) {
+		sh "env"
 		def appImage = docker.build("hands-on-jenkins/myapp:${BUILD_NUMBER}")
 	}
 }
