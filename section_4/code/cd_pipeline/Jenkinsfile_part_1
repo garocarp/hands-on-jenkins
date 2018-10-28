@@ -13,13 +13,15 @@ pipeline {
     stages {
 
         stage("Build") {
-	    withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin;/usr/local/bin']) 
-            steps { buildApp() }
+            steps { 
+		    withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin;/usr/local/bin']) 
+		    buildApp() }
 		}
 
         stage("Deploy - Dev") {
-	    withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin;/usr/local/bin']) 
-            steps { deploy('dev') }
+            steps { 
+		    withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin;/usr/local/bin']) 
+		    deploy('dev') }
 		}
 
 	}
