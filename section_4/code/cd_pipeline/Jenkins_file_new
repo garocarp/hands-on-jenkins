@@ -26,9 +26,7 @@
                      }
                    }
        stage('aftermath') {
-            steps {
                      steps { buildApp() }
-		       }
                      }
          }
  }
