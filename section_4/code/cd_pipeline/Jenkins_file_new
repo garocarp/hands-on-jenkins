@@ -24,7 +24,11 @@
                      }
                    }
        stage('aftermath') {
-                     steps { buildApp() }
+                     steps { 
+			      withEnv(['PATH+EXTRA=/usr/local/bin:/usr/bin:/sbin:/bin']) 
+		           {
+			     buildApp() }
+		     }
                      }
          }
  }
